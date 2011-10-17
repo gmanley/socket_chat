@@ -1,7 +1,7 @@
 .topbar
   .fill
     .container
-      %a.brand{:href => "#"} Project name
+      %a.brand{:href => "#"} Socket Chat
       %ul.nav
         %li.active
           %a{:href => "#"} Home
@@ -13,23 +13,22 @@
         %input.input-small{:placeholder => "Username", :type => "text"}
           %input.input-small{:placeholder => "Password", :type => "password"}
             %button.btn{:type => "submit"} Sign in
-.container
+.container-fluid
+  .page-header
+    %h1
+      Socket Chat
+      %small A Realtime Chat Application
+  .sidebar
+    %h3 Users
   .content
-    .page-header
-      %h1
-        Page name
-        %small Supporting text or tagline
-    .row
-      .span10
-        %h2 Commits
-        %table#commits.zebra-striped
-          %thead
-            %tr
-              %th Commiter
-              %th Commit Message
-          %tbody
+    #messageContainer
+      #messages
+        .message
+          .user Anon
+          .body Oh Hai
+    %form#sendMessage
+      %input#newMessage{:autocomplete => "off", :name => "message", :type => "text"}
+      %input#sendButton{:type => "submit", :value => "Send"}/
 
-      .span4
-        %h3 Secondary content
   %footer
     %p © Company 2011

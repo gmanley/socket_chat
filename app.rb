@@ -28,6 +28,24 @@ module SocketChat
       setup_db(config)
     end
 
+    helpers do
+      def faye_path
+        "#{request.scheme}://#{request.host}:9001/faye"
+      end
+
+      def faye_js_path
+        faye_path + ".js"
+      end
+
+      def room_url(room)
+        "#{request.scheme}://#{request.host}:#{request.port}/room/#{room}"
+      end
+    end
+
+    def generate_room_hash
+      Digest::MD5.hexdigest(Time.now.to_f.to_s).slice(0, 8)
+    end
+
     get '/' do
       haml :index
     end

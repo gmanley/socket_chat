@@ -29,7 +29,7 @@ module RackIRB
       end
 
       def sinatra
-        ::App
+        SocketChat::App
       end
 
       def reload!

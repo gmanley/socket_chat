@@ -1,28 +1,28 @@
-// head(function() {
-//
-// });
+head(function() {
 
-FAYE_DEBUG = true;
+  var client = new Faye.Client(faye_path, {
+      timeout: 120
+  });
 
-Logger = {
-  incoming: function(message, callback) {
-    console.log('incoming', message);
-    callback(message);
-  },
-  outgoing: function(message, callback) {
-    console.log('outgoing', message);
-    callback(message);
-  }
-};
+  var subscription = client.subscribe('/chat', function(message) {
+    addMessage(message.user, message.message);
+  });
 
-if (FAYE_DEBUG) {
-  client.addExtension(Logger);
-};
+  $('form#sendMessage').submit(function(e) {
+    var message = $('#newMessage').val();
 
-var client = new Faye.Client('/faye', {
-    timeout: 120
+    client.publish("/chat", {
+      user: user,
+      message: message
+    });
+    $('#newMessage').val('');
+
+    e.preventDefault();
+  });
+
+  var addMessage = function(user, message) {
+    $("#messages").append('<div class="message"></div>')
+    .append('<div class="message"><div class="user">' + user + '</div><div class="body">' + message + '</div></div>');
+  };
 });
 
-var subscription = client.subscribe('/chat', function(message) {
-  // handle message
-});

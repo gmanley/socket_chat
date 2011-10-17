@@ -1,21 +1,16 @@
-html, body {
-  background-color: #eee;
-}
 body {
   padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
 }
-.container > footer p {
+
+.container-fluid > footer p {
   text-align: center; /* center align it with the container */
-}
-.container {
-  width: 820px; /* downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this removes two full columns from the grid, meaning you only go to 14 columns and not 16. */
 }
 
 /* The white background content wrapper */
 .content {
   background-color: #fff;
   padding: 20px;
-  margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+  margin-right:10em;
   -webkit-border-radius: 0 0 6px 6px;
   -moz-border-radius: 0 0 6px 6px;
   border-radius: 0 0 6px 6px;
@@ -31,13 +26,116 @@ body {
   margin: -20px -20px 20px;
 }
 
-/* Give a quick and non-cross-browser friendly divider */
-.content .span4 {
-  margin-left: 0;
-  padding-left: 19px;
-  border-left: 1px solid #eee;
-}
-
 .topbar .btn {
   border: 0;
+}
+
+#messageContainer {
+  border: solid 1px #ccc;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  min-height: 40em;
+  border: 0px solid rgba(0,0,0,0.49);
+  border-radius: 10px;
+  background-image: -moz-linear-gradient(top, #fcfcfc, #f7f7f7 3%, #f2f2f2 12%, #d9d9d9 90%, #bfbfbf);
+  background-image: -webkit-gradient(linear, center top, center bottom, from(#fcfcfc), to(#bfbfbf), color-stop(3%, #f7f7f7), color-stop(12%, #f2f2f2), color-stop(90%, #d9d9d9));
+  -webkit-box-shadow: inset 0px 3px 14px 1px rgba(0,0,0,0.25);
+  -moz-box-shadow: inset 0px 3px 14px 1px rgba(0,0,0,0.25);
+  box-shadow: inset 0px 3px 14px 1px rgba(0,0,0,0.25);
+}
+
+#messages {
+  overflow: hidden;
+  padding: 1em 2em 0em;
+}
+
+#messages .message:first {
+  margin-top: 2em;
+}
+
+#messages .message:last {
+  margin-bottom: 2em;
+}
+
+#messages .message {
+  clear: left;
+  font-size: 12pt;
+  padding: 10px;
+}
+
+#messages .message .user {
+  font-weight: bold;
+  float: left;
+  width: 100px;
+}
+
+#messages .message .body {
+  float: left;
+}
+
+#sendMessage {
+  position: relative;
+  background: #444;
+  margin-top: 2em;
+  margin: 2em 0 0 0;
+  padding: 1em;
+  height: 4em;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 12px 15px rgba(0,0,0,0.25);
+  -moz-box-shadow: inset 0 0 12px 15px rgba(0,0,0,0.25);
+  box-shadow: inset 0 0 12px 15px rgba(0,0,0,0.25);
+  background-color: #444;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#333), to(#444));
+  background-image: -moz-linear-gradient(top, #333, #444);
+  background-position: bottom center;
+  background-repeat: no-repeat;
+
+}
+
+#newMessage {
+  height:80%;
+  width:80%;
+  font-size: 16pt;
+  padding: 0.25em;
+  margin-right: 0.5em;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+  background: none;
+  text-shadow: 1px 1px 1px #000;
+}
+
+#newMessage:focus {
+  box-shadow:none;
+}
+
+#sendButton {
+  width: 10%;
+  min-width:75px;
+  padding: 0.5em;
+  float: right;
+  font-size: 16pt;
+  border: none;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  background: #7dd629;
+  background-color: #559716;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#7dd629), to(#559716));
+  background-image: -moz-linear-gradient(top, #7dd629, #559716);
+  color: #fff;
+  text-shadow: 1px 1px 1px #39680d;
+  -webkit-transition: box-shadow 0.3s linear;
+}
+
+form#sendMessage input[type="submit"]:hover {
+  -webkit-box-shadow: 0 0 10px 4px rgba(123,255,0,0.50);
+  -moz-box-shadow: 0 0 10px 4px rgba(123,255,0,0.50);
+  box-shadow: 0 0 10px 4px rgba(123,255,0,0.50);
+  cursor: pointer;
 }
