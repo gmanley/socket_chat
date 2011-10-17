@@ -8,6 +8,8 @@ head(function() {
     addMessage(message.user, message.message);
   });
 
+  var user = 'Gray';
+
   $('form#sendMessage').submit(function(e) {
     var message = $('#newMessage').val();
 
