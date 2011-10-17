@@ -1,0 +1,91 @@
+GIT
+  remote: git://github.com/gmanley/mongoid.git
+  revision: 36884d87fc6b79c7c442bcad8314060d21e799fe
+  specs:
+    mongoid (2.0.1)
+      activemodel (~> 3.0)
+      mongo (~> 1.3)
+      tzinfo (~> 0.3.22)
+      will_paginate (~> 3.0.pre)
+
+GIT
+  remote: git://github.com/sinatra/sinatra.git
+  revision: 038220280a5295a38f4fc205c25ab921b4c13161
+  specs:
+    sinatra (1.3.1)
+      rack (~> 1.3, >= 1.3.4)
+      rack-protection (~> 1.1, >= 1.1.2)
+      tilt (~> 1.3, >= 1.3.3)
+
+GEM
+  remote: http://rubygems.org/
+  specs:
+    POpen4 (0.1.4)
+      Platform (>= 0.4.0)
+      open4
+    Platform (0.4.0)
+    activemodel (3.1.1)
+      activesupport (= 3.1.1)
+      builder (~> 3.0.0)
+      i18n (~> 0.6)
+    activesupport (3.1.1)
+      multi_json (~> 1.0)
+    addressable (2.2.6)
+    bson (1.4.0)
+    bson_ext (1.4.0)
+    builder (3.0.0)
+    daemons (1.1.4)
+    em-hiredis (0.1.0)
+      hiredis (~> 0.3.0)
+    em-http-request (0.3.0)
+      addressable (>= 2.0.0)
+      escape_utils
+      eventmachine (>= 0.12.9)
+    escape_utils (0.2.4)
+    eventmachine (0.12.10)
+    faye (0.6.6)
+      em-hiredis (>= 0.0.1)
+      em-http-request (~> 0.3)
+      eventmachine (~> 0.12.0)
+      json (>= 1.0)
+      rack (>= 1.0)
+      thin (~> 1.2)
+    haml (3.1.3)
+    hiredis (0.3.2)
+    i18n (0.6.0)
+    json (1.6.1)
+    mongo (1.4.0)
+      bson (= 1.4.0)
+    multi_json (1.0.3)
+    open4 (1.2.0)
+    rack (1.3.4)
+    rack-protection (1.1.4)
+      rack
+    rack-test (0.6.1)
+      rack (>= 1.0)
+    shotgun (0.9)
+      rack (>= 1.0)
+    thin (1.2.11)
+      daemons (>= 1.0.9)
+      eventmachine (>= 0.12.6)
+      rack (>= 1.0.0)
+    tilt (1.3.3)
+    tzinfo (0.3.30)
+    will_paginate (3.0.2)
+    yui-compressor (0.9.6)
+      POpen4 (>= 0.1.4)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bson_ext
+  faye
+  haml
+  json
+  mongoid!
+  rack-test
+  shotgun
+  sinatra!
+  thin
+  yui-compressor

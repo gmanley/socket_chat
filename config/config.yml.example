@@ -1,0 +1,10 @@
+database:
+  production:
+    host: localhost
+    database: socket_chat_production
+  development:
+    host: localhost
+    database: socket_chat_development
+  test:
+    host: localhost
+    database: socket_chat_test
