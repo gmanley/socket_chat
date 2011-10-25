@@ -10,7 +10,7 @@ GIT
 
 GIT
   remote: git://github.com/sinatra/sinatra.git
-  revision: 038220280a5295a38f4fc205c25ab921b4c13161
+  revision: a27a95d0049b6cd61b988570b055b9cf4961c44e
   specs:
     sinatra (1.3.1)
       rack (~> 1.3, >= 1.3.4)
@@ -31,8 +31,8 @@ GEM
     activesupport (3.1.1)
       multi_json (~> 1.0)
     addressable (2.2.6)
-    bson (1.4.0)
-    bson_ext (1.4.0)
+    bson (1.4.1)
+    bson_ext (1.4.1)
     builder (3.0.0)
     daemons (1.1.4)
     em-hiredis (0.1.0)
@@ -43,7 +43,7 @@ GEM
       eventmachine (>= 0.12.9)
     escape_utils (0.2.4)
     eventmachine (0.12.10)
-    faye (0.6.6)
+    faye (0.6.7)
       em-hiredis (>= 0.0.1)
       em-http-request (~> 0.3)
       eventmachine (~> 0.12.0)
@@ -54,15 +54,18 @@ GEM
     hiredis (0.3.2)
     i18n (0.6.0)
     json (1.6.1)
-    mongo (1.4.0)
-      bson (= 1.4.0)
+    mongo (1.4.1)
+      bson (= 1.4.1)
     multi_json (1.0.3)
     open4 (1.2.0)
-    rack (1.3.4)
+    rack (1.3.5)
+    rack-flash (0.1.2)
+      rack
     rack-protection (1.1.4)
       rack
     rack-test (0.6.1)
       rack (>= 1.0)
+    rake (0.9.2.2)
     shotgun (0.9)
       rack (>= 1.0)
     thin (1.2.11)
@@ -84,7 +87,9 @@ DEPENDENCIES
   haml
   json
   mongoid!
+  rack-flash
   rack-test
+  rake
   shotgun
   sinatra!
   thin

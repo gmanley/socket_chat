@@ -139,3 +139,14 @@ form#sendMessage input[type="submit"]:hover {
   box-shadow: 0 0 10px 4px rgba(123,255,0,0.50);
   cursor: pointer;
 }
+
+.login-message {
+  float:left;
+  margin-bottom:0px;
+  margin-right:10px;
+}
+
+.login-message p {
+  line-height:1px;
+  float:right;
+}

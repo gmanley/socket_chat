@@ -15,6 +15,13 @@ namespace :log do
   end
 end
 
+namespace :db do
+  desc "Load seed data"
+  task :seed do
+    load("db/seeds.rb")
+  end
+end
+
 require 'rake/testtask'
 
 Rake::TestTask.new do |t|

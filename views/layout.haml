@@ -9,6 +9,6 @@
     %script{:src => "/js/head.load.min.js", :type => "text/javascript"}
     %script{:type => "text/javascript"}
       var faye_path = "#{faye_path}";
-      head.js("https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js", "#{faye_js_path}", "/js/main.js");
+      head.js('https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js', '/js/jquery-wiggle.js', "#{faye_js_path}", '/js/mustache.js', '/js/main.js');
   %body
     = yield

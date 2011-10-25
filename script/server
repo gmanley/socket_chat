@@ -1,3 +1,2 @@
 #!/usr/bin/env sh
-bundle exec shotgun -s thin &
-bundle exec thin start -R faye.ru -p 9001 -e production
+bundle exec shotgun -s thin

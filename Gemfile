@@ -6,6 +6,8 @@ gem 'bson_ext'
 gem 'haml'
 gem 'json'
 gem 'faye'
+gem 'rake'
+gem 'rack-flash'
 
 group :development do
   gem 'shotgun'

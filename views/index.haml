@@ -1,32 +1,12 @@
-.topbar
-  .fill
-    .container
-      %a.brand{:href => "#"} Socket Chat
-      %ul.nav
-        %li.active
-          %a{:href => "#"} Home
-        %li
-          %a{:href => "#about"} About
-        %li
-          %a{:href => "#contact"} Contact
-      %form.pull-right{:action => ""}
-        %input.input-small{:placeholder => "Username", :type => "text"}
-          %input.input-small{:placeholder => "Password", :type => "password"}
-            %button.btn{:type => "submit"} Sign in
+= partial(:topbar)
 .container-fluid
   .page-header
     %h1
       Socket Chat
       %small A Realtime Chat Application
-  .sidebar
-    %h3 Users
-  .content
-    #messageContainer
-      #messages
-
-    %form#sendMessage
-      %input#newMessage{:autocomplete => "off", :name => "message", :type => "text"}
-      %input#sendButton{:type => "submit", :value => "Send"}/
-
+  - if logged_in?
+    = partial(:chatbox)
+  - else
+    %span REGISTER NAO!
   %footer
     %p © Gray 2011
