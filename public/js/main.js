@@ -1,6 +1,6 @@
 head(function() {
 
-  Faye.Logging.logLevel = 'debug';
+  Faye.Logging.logLevel = 'info';
   Faye.logger = function(msg) { if (window.console) console.log(msg) };
 
   var client = new Faye.Client(faye_path, {
@@ -35,8 +35,6 @@ head(function() {
 
     e.preventDefault();
   });
-
-  var user = 'Gray';
 
   $('form#sendMessage').submit(function(e) {
     var message = $('#newMessage').val();

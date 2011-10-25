@@ -8,7 +8,6 @@ class User
   attr_protected :password_hash, :password_salt
   attr_accessor :password, :password_confirmation
 
-  field :username, type: String
   field :email, type: String
   field :first_name, type: String
   field :last_name, type: String
@@ -23,8 +22,11 @@ class User
   validates_format_of :email, with: /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
   validate :check_password, on: :create
 
-  # Authentication methods
+  def short_name
+    "#{first_name[0]}.#{last_name}".downcase
+  end
 
+  # Authentication methods
   def check_password
     if self.new_record?
       errors.add(:base, "Password can't be blank") if self.password.blank?
