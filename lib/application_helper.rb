@@ -1,6 +1,6 @@
 module SocketChat::ApplicationHelper
   def faye_path
-    "#{request.scheme}://#{request.host}:9001/faye"
+    "#{request.scheme}://#{request.host}:#{request.port}/faye"
   end
 
   def faye_js_path

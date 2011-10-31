@@ -6,11 +6,15 @@ Bundler.require(:default, ENV['RACK_ENV'].to_sym)
 
 require 'app'
 
-server = Faye::RackAdapter.new(:mount => '/faye', :timeout => 30, :port => 9001)
+server = Faye::RackAdapter.new(SocketChat::App,
+  :mount => '/faye',
+  :timeout => 30,
+  :port => 3000
+)
+
 EM.run do
   thin = Rack::Handler.get('thin')
-  thin.run(SocketChat::App, :Port => 3000)
-  thin.run(server, :Port => 9001)
+  thin.run(server, :Port => 3000)
 
   server.get_client.subscribe('/*') do |message|
     user = User.find(message["user"]["id"])
