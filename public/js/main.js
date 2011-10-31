@@ -19,9 +19,8 @@ head(function() {
         if (response.success) {
           console.log("Sucess!");
         } else {
-          var error_template = '<div class="alert-message error login-message"><p><strong>{{error}}!</strong></p></div>';
-          var html = Mustache.to_html(error_template, response);
-          $(".topbar .fill .container form").append(html);
+          var error_message = '<div class="alert-message error login-message"><p><strong>' + response.error + '!</strong></p></div>';
+          $(".topbar .fill .container form").append(error_message);
           $(".login-message").wiggle({
               waggle : 3,
               duration : 2
