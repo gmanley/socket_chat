@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-bundle exec shotgun -s thin
+bundle exec thin --debug --rackup config.ru start
