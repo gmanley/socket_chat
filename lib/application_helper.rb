@@ -16,7 +16,7 @@ module SocketChat::ApplicationHelper
   end
 
   def current_user
-    User.find(session[:user])
+    User.find(session[:user]) unless session[:user].nil?
   end
 
   def partial(template, *args)

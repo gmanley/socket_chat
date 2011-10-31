@@ -10,7 +10,6 @@ gem 'rake'
 gem 'rack-flash'
 
 group :development do
-  gem 'shotgun'
   gem 'thin'
   gem 'rack-test'
   gem 'yui-compressor'
