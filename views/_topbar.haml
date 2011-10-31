@@ -13,7 +13,7 @@
         %a.pull-right{:href => "#"}
           %span= current_user.email
       - else
-        %form#login.pull-right{:action => "/user/login"}
+        %form#login.pull-right{:action => "/user/login", :method => "post"}
           %input.input-small{:placeholder => "Email", :type => "text", :name => "email"}
             %input.input-small{:placeholder => "Password", :type => "password", :name => "password"}
               %button.btn{:type => "submit"} Sign in
