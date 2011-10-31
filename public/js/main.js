@@ -11,7 +11,6 @@ head(function() {
     addMessage(message);
   });
 
-
   $('form#login').submit(function(e) {
     var params = $(this).serialize();
 
@@ -37,21 +36,21 @@ head(function() {
   });
 
   $('form#sendMessage').submit(function(e) {
-    var message = $('#newMessage').val();
+    var text = $('#newMessage').val();
 
     client.publish("/chat", {
       user: user,
-      message: message
+      text: text
     });
+
     $('#newMessage').val('');
 
     e.preventDefault();
   });
 
   var addMessage = function(message) {
-    var template = '<div class="message"><div class="user">{{user}}</div><div class="body">{{message}}</div></div>';
-
-    var html = Mustache.to_html(template, message);
+    console.log(message);
+    var html = '<div class="message"><div class="user">' + message.user.short_name + '</div><div class="body">' + message.text + '</div></div>';
     $("#messages").append(html);
   };
 });
