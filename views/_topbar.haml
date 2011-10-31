@@ -1,19 +1,19 @@
 .topbar
   .fill
     .container
-      %a.brand{href: "#"} Socket Chat
+      %a.brand{:href => "#"} Socket Chat
       %ul.nav
         %li.active
-          %a{href: "#"} Home
+          %a{:href => "#"} Home
         %li
-          %a{href: "#about"} About
+          %a{:href => "#about"} About
         %li
-          %a{href: "#contact"} Contact
+          %a{:href => "#contact"} Contact
       - if logged_in?
-        %a.pull-right{href: "#"}
+        %a.pull-right{:href => "#"}
           %span= current_user.email
       - else
-        %form#login.pull-right{action: "/user/login"}
-          %input.input-small{placeholder: "Email", type: "text", name: "email"}
-            %input.input-small{placeholder: "Password", type: "password", name: "password"}
-              %button.btn{type: "submit"} Sign in
+        %form#login.pull-right{:action => "/user/login"}
+          %input.input-small{:placeholder => "Email", :type => "text", :name => "email"}
+            %input.input-small{:placeholder => "Password", :type => "password", :name => "password"}
+              %button.btn{:type => "submit"} Sign in
