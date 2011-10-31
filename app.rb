@@ -18,7 +18,7 @@ module SocketChat
     end
 
     configure(:production) do
-      set :haml, {ugly: true}
+      set :haml, {:ugly => true}
     end
 
     configure(:production, :development) do
@@ -26,7 +26,7 @@ module SocketChat
     end
 
     configure do
-      set :haml, {format: :html5}
+      set :haml, {:format => :html5}
       enable(:sessions)
       use Rack::Flash
 
@@ -45,9 +45,9 @@ module SocketChat
       content_type :json
       if user = User.authenticate(params[:email], params[:password])
         session[:user] = user.id
-        {success: true, user_id: user.id}.to_json
+        {:success => true, :user_id => user.id}.to_json
       else
-        {success: false, error: "Invalid credentials"}.to_json
+        {:success => false, :error => "Invalid credentials"}.to_json
       end
     end
   end

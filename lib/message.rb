@@ -6,5 +6,5 @@ class Message
 
   belongs_to :user
 
-  field :text, type: String
+  field :text, :type => String
 end
