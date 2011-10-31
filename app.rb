@@ -42,19 +42,17 @@ module SocketChat
     end
 
     post '/user/login' do
-      content_type :json
       if user = User.authenticate(params[:email], params[:password])
         session[:user] = user.id
-        {:success => true, :topbar => partial(:topbar), :chatbox => partial(:chatbox), :user => {:id => user.id, :short_name => user.short_name}}.to_json
+        redirect '/'
       else
-        {:success => false, :error => "Invalid credentials"}.to_json
+        redirect '/'
       end
     end
 
     get '/user/logout' do
-      content_type :json
       session[:user] = nil
-      {:success => true, :message => "Logged Out"}.to_json
+      redirect '/'
     end
   end
 end

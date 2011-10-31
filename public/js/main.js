@@ -13,29 +13,6 @@ head(function () {
     addMessage(message);
   });
 
-  $('form#login').submit(function (e) {
-    var params = $(this).serialize();
-
-    $.post($(this).attr("action"), params, function (response) {
-      if (response.success) {
-        var user = response.user;
-        $('#access_notice').replaceWith(response.chatbox);
-        $('.topbar').first().replaceWith(response.topbar);
-      } else {
-        var error_message = '<div class="alert-message error login-message"><p><strong>' + response.error + '!</strong></p></div>';
-        $(".topbar .fill .container form").append(error_message);
-        $(".login-message").wiggle({
-          waggle: 3,
-          duration: 2
-        }, function (elem) {
-          $(elem).fadeOut('slow');
-        });
-      }
-    });
-
-    e.preventDefault();
-  });
-
   $('#sendMessage').submit(function (e) {
     var text = $('#newMessage').val();
 
