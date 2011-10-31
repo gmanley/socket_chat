@@ -13,6 +13,7 @@ module SocketChat
         end
       end
       require 'lib/user'
+      require 'lib/message'
     end
 
     configure(:production) do

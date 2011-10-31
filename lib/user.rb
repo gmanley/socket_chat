@@ -15,6 +15,8 @@ class User
   field :password_hash, type: String
   field :password_salt, type: String
 
+  has_many :messages
+
   before_save :prepare_password
 
   validates_presence_of :first_name, :last_name
