@@ -1,7 +1,7 @@
 head(function() {
 
   Faye.Logging.logLevel = 'info';
-  Faye.logger = function(msg) { if (window.console) console.log(msg) };
+  Faye.logger = function(msg) { if (window.console) console.log(msg); };
 
   var client = new Faye.Client(faye_path, {
       timeout: 120
@@ -48,7 +48,6 @@ head(function() {
   });
 
   var addMessage = function(message) {
-    console.log(message);
     var html = '<div class="message"><div class="user">' + message.user.short_name + '</div><div class="body">' + message.text + '</div></div>';
     $("#messages").append(html);
   };

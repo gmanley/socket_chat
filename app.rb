@@ -14,6 +14,7 @@ module SocketChat
       end
       require 'lib/user'
       require 'lib/message'
+      require 'lib/chat_history'
     end
 
     configure(:production) do
