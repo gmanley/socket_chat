@@ -26,11 +26,14 @@ module SocketChat
     end
 
     configure do
+      config = YAML.load_file('config/config.yml')
+
       set :haml, {:format => :html5}
+
       enable(:sessions)
+      set :session_secret, config['session_secret']
       use Rack::Flash
 
-      config = YAML.load_file('config/config.yml')
       setup_db(config)
     end
 

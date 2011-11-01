@@ -7,10 +7,11 @@ Bundler.require(:default, ENV['RACK_ENV'].to_sym)
 require 'app'
 
 Faye::Logging.log_level = :info
+port = ENV['RACK_ENV'] == 'production' ? 80 : 3000
 server = Faye::RackAdapter.new(SocketChat::App,
   :mount => '/faye',
   :timeout => 30,
-  :port => 3000
+  :port => port
 )
 server.add_extension(SocketChat::ChatHistory.new)
 
