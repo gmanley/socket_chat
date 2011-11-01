@@ -41,6 +41,7 @@ module SocketChat
     helpers(ApplicationHelper)
 
     get '/' do
+      @messages = Message.limit(20)
       haml :index
     end
 

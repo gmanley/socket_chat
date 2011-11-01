@@ -3,6 +3,10 @@
 .content
   #messageContainer
     #messages
+      - @messages.each do |message|
+        .message
+          .user=message.user.short_name
+          .body=message.text
 
   %form#sendMessage
     %input#newMessage{:autocomplete => "off", :name => "message", :type => "text"}
