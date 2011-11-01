@@ -10,8 +10,15 @@
         %li
           %a{:href => "#contact"} Contact
       - if logged_in?
-        %a.pull-right{:href => "#"}
-          %span= current_user.email
+        %ul.nav.secondary-nav
+          %li.dropdown#user_dropdown{:data => {:dropdown => 'dropdown'}}
+            %a.dropdown-toggle{:href => "#"}= current_user.email
+            %ul.dropdown-menu
+              %li
+                %a{:href => "#"} My Profile
+              %li.divider
+              %li
+                %a{:href => "/user/logout"} Logout
       - else
         %form#login.pull-right{:action => "/user/login", :method => "post"}
           %input.input-small{:placeholder => "Email", :type => "text", :name => "email"}

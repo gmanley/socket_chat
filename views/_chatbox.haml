@@ -1,6 +1,11 @@
 :javascript
-  var user = {"id": "#{current_user.id}", "short_name": "#{current_user.short_name}"}
-  var room = "#{@room.id}"
+  var user = {"id": "#{current_user.id}", "short_name": "#{current_user.short_name}"};
+  var room = "#{@room.id}";
+  var faye_path = "#{faye_path}";
+  head(function () {
+    chatInit();
+  });
+
 .sidebar
   %h3 Users
 .content
