@@ -17,5 +17,5 @@ server.add_extension(SocketChat::ChatHistory.new)
 
 EM.run do
   thin = Rack::Handler.get('thin')
-  thin.run(server, :Port => 3000)
+  thin.run(server, :Port => port)
 end
