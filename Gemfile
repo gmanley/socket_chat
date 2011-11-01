@@ -8,9 +8,9 @@ gem 'json'
 gem 'faye'
 gem 'rake'
 gem 'rack-flash'
+gem 'thin'
 
 group :development do
-  gem 'thin'
   gem 'rack-test'
   gem 'yui-compressor'
 end
