@@ -9,16 +9,17 @@ head(function () {
     timeout: 120
   });
 
-  var subscription = client.subscribe('/chat', function (message) {
+  var subscription = client.subscribe('/chat/' + room, function (message) {
     addMessage(message);
   });
 
   $('#sendMessage').submit(function (e) {
     var text = $('#newMessage').val();
 
-    client.publish("/chat", {
+    client.publish("/chat/" + room, {
       user: user,
-      text: text
+      text: text,
+      room: room
     });
 
     $('#newMessage').val('');

@@ -8,8 +8,8 @@ module SocketChat
       end
 
       user = User.find(message['data']['user']['id'])
-      logged_message = user.messages.new(:text => message['data']['text'])
-      logged_message.save!
+      room = Room.find(message['data']['room'])
+      user.messages << room.messages.create(:text => message['data']['text'])
 
       # Call the server back now we're done
       callback.call(message)

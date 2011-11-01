@@ -9,6 +9,7 @@ gem 'faye'
 gem 'rake'
 gem 'rack-flash'
 gem 'thin'
+gem 'mongoid_slug'
 
 group :development do
   gem 'rack-test'

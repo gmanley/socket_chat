@@ -14,6 +14,7 @@ module SocketChat
       end
       require 'lib/user'
       require 'lib/message'
+      require 'lib/room'
       require 'lib/chat_history'
     end
 
@@ -45,6 +46,15 @@ module SocketChat
       haml :index
     end
 
+    get '/room/:room_name' do |room_name|
+      if @room = Room.find_by_slug(room_name)
+        @messages = @room.messages.limit(20)
+        haml :room
+      else
+        404
+      end
+    end
+
     post '/user/login' do
       if user = User.authenticate(params[:email], params[:password])
         flash[:notice] = "Logged in successfully"
@@ -59,6 +69,10 @@ module SocketChat
     get '/user/logout' do
       session[:user] = nil
       redirect '/'
+    end
+
+    not_found do
+      haml :'404'
     end
   end
 end
