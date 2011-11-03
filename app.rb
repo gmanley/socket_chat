@@ -18,6 +18,10 @@ module SocketChat
       require 'lib/chat_history'
     end
 
+    configure(:development) do
+      register Sinatra::Reloader
+    end
+
     configure(:production) do
       set :haml, {:ugly => true}
     end

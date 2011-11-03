@@ -1,4 +1,4 @@
-# Use the ruby 1.9.2 & the socket_chat gemset
+# Use the ruby 1.9.3 & the socket_chat gemset
 # If they don't exsist build/create them first
 rvm --create --install 1.9.3@socket_chat
 # Install bundler if it isn't installed

@@ -12,6 +12,21 @@ gem 'thin'
 gem 'mongoid_slug'
 
 group :development do
-  gem 'rack-test'
   gem 'yui-compressor'
+  gem 'sinatra-contrib', :git => 'git://github.com/sinatra/sinatra-contrib.git', :require => 'sinatra/reloader'
+end
+
+group :test do
+  gem 'rspec'
+  gem 'capybara', :require => 'capybara/dsl'
+  gem 'selenium'
+  gem 'launchy'
+end
+
+group :development, :test do
+  gem 'faker'
+  gem 'machinist', '2.0.0.beta2'
+  gem 'machinist_mongo', :require => 'machinist/mongoid', :git => 'git://github.com/nmerouze/machinist_mongo.git', :branch => 'machinist2'
+  gem 'sham'
+  gem 'rack-test', :require => 'rack/test'
 end

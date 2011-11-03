@@ -10,3 +10,4 @@ config = YAML.load_file('config/config.yml')
 SocketChat::App.setup_db(config)
 
 User.create(email: "gray.manley@gmail.com", password: "password", password_confirmation: "password", first_name: "Grayson", last_name: "Manley")
+Room.create(name: 'Main')

@@ -1,3 +1,7 @@
+# I recommend generating this by running the following in IRB:
+# require 'securerandom'
+# SecureRandom.hex(64) # => random_string
+session_secret: random_string
 database:
   production:
     host: localhost

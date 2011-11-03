@@ -11,7 +11,6 @@ class User
   field :email, :type => String
   field :first_name, :type => String
   field :last_name, :type => String
-  field :authentication_token, :type => String
   field :password_hash, :type => String
   field :password_salt, :type => String
 
