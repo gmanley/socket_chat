@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-bundle exec thin --debug --rackup config.ru start
+bundle exec thin -p 3000 --debug --rackup config.ru start
