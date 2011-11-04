@@ -13,6 +13,7 @@ gem 'mongoid_slug'
 
 group :development do
   gem 'yui-compressor'
+  gem 'heroku'
   gem 'sinatra-contrib', :git => 'git://github.com/sinatra/sinatra-contrib.git', :require => 'sinatra/reloader'
 end
 
