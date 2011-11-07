@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 Capybara.app = SocketChat::App
-Capybara.current_driver = :selenium
+Capybara.current_driver = :akephalos
 
 RSpec.configure do |config|
   config.include Capybara::DSL

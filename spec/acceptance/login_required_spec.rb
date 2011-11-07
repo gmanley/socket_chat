@@ -1,4 +1,4 @@
-require File.dirname(__FILE__) + '/../acceptence_helper'
+require 'acceptance_helper'
 
 describe 'Pages that require login' do
   context 'a chatroom' do
