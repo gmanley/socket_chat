@@ -31,7 +31,12 @@ module SocketChat
     end
 
     configure do
-      config = YAML.load_file('config/config.yml')
+      if File.exists?(File.expand_path('config/config.yml', File.dirname(__FILE__)))
+        config = YAML.load_file('config/config.yml')
+      else
+        puts 'No file "config/config.yml" found. Assuming we are on heroku!'
+        config = ENV
+      end
 
       set :haml, {:format => :html5}
 
