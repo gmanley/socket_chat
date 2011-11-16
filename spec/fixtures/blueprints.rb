@@ -1,3 +1,7 @@
+Message.blueprint do
+  text { Faker::Lorem.sentence }
+end
+
 Room.blueprint do
   name { "#{Faker::Company.bs} Room".titleize }
 end

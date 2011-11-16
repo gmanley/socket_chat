@@ -20,7 +20,7 @@ end
 group :test do
   gem 'rspec'
   gem 'capybara', :require => 'capybara/dsl'
-  gem 'akephalos2', :require => 'akephalos'
+  gem 'selenium'
   gem 'launchy'
 end
 

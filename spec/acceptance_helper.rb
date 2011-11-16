@@ -1,7 +1,14 @@
 require 'spec_helper'
+require 'capybara/rspec'
 
-Capybara.app = SocketChat::App
-Capybara.current_driver = :akephalos
+$server = Faye::RackAdapter.new(SocketChat::App,
+  :mount => '/faye',
+  :timeout => 30,
+  :extensions => [SocketChat::ChatHistory.new]
+)
+
+Capybara.app = $server
+Capybara.current_driver = :selenium
 
 RSpec.configure do |config|
   config.include Capybara::DSL
