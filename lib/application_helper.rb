@@ -12,11 +12,15 @@ module SocketChat::ApplicationHelper
   end
 
   def logged_in?
-    !session[:user].nil? && current_user
+    true if current_user
   end
 
   def current_user
-    User.find(session[:user]) unless session[:user].nil?
+    begin
+      @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    rescue Mongoid::Errors::DocumentNotFound
+      nil
+    end
   end
 
   def partial(template, *args)
