@@ -1,4 +1,6 @@
 module SocketChat::ApplicationHelper
+  include Haml::Helpers
+
   def faye_path
     "#{request.scheme}://#{request.host}:#{request.port}/faye"
   end
@@ -31,5 +33,25 @@ module SocketChat::ApplicationHelper
     options.merge!(:layout => false)
 
     haml(template.to_sym, options)
+  end
+
+  def block_message(main_message, messages = [])
+    haml_tag :div, class: "alert-message block-message error", data: {alert: 'alert'} do
+      haml_tag 'a.close', href: '#'
+      haml_tag :p, main_message
+      haml_tag :ul do
+        messages.each do |msg|
+          haml_tag :li, msg
+        end
+      end
+    end
+  end
+
+  def flash_messages
+    haml_tag 'ul.flash' do
+      [:error, :warning, :notice].each do |f|
+        haml_tag :li, flash[f], class: f if flash.has?(f)
+      end
+    end
   end
 end

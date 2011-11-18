@@ -7,6 +7,8 @@
   - if logged_in?
     %span#access_notice A lobby will be here!
   - else
-    %span#access_notice Please Sign In!
+    %span#access_notice
+      Please sign in or
+      %a{:href => "/user/new"} register!
   %footer
     %p © Gray 2011

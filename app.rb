@@ -75,8 +75,23 @@ module SocketChat
       end
     end
 
+    get '/user/new' do
+      haml :register
+    end
+
+    post '/user/new' do
+      @user = User.create(params)
+      if @user.valid?
+        flash[:notice] = "Registered successfully!"
+        session[:user_id] = @user.id.to_s
+        redirect '/'
+      else
+        haml :register
+      end
+    end
+
     get '/user/logout' do
-      session[:user] = nil
+      session[:user_id] = nil
       redirect '/'
     end
 

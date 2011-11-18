@@ -1,0 +1,16 @@
+= partial(:topbar)
+.container-fluid
+  .page-header
+    %h1
+      Socket Chat
+      %small Registration
+  - if @user and !@user.errors.empty?
+    - block_message("Please correct the following issues and then re-submit the form.", @user.errors.full_messages)
+  %form#register{:action => "/user/new", :method => "post"}
+    %input.input-large{:placeholder => "Email", :type => "text", :name => "email"}
+    %fieldset.password-fields
+      %input.input-large{:placeholder => "Password", :type => "password", :name => "password"}
+      %input.input-large{:placeholder => "Password Confirmation", :type => "password", :name => "password_confirmation"}
+    %button.btn{:type => "submit"} Sign in
+  %footer
+    %p © Gray 2011
