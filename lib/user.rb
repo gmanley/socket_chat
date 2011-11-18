@@ -8,19 +8,19 @@ class User
   attr_protected :password_hash, :password_salt
   attr_accessor :password, :password_confirmation
 
-  field :email, :type => String
-  field :first_name, :type => String
-  field :last_name, :type => String
-  field :password_hash, :type => String
-  field :password_salt, :type => String
+  field :email, type: String
+  field :first_name, type: String
+  field :last_name, type: String
+  field :password_hash, type: String
+  field :password_salt, type: String
 
   has_many :messages
 
-  before_save :prepare_password
+  after_initialize :prepare_password
 
   validates_presence_of :email, :first_name, :last_name
   validates_uniqueness_of :email
-  validates_format_of :email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
+  validates_format_of :email, with: /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
   validate :check_password, on: :create
 
   def short_name
@@ -37,7 +37,7 @@ class User
   end
 
   def self.authenticate(email, password)
-    user = first(:conditions => {:email => email})
+    user = first(conditions: {email: email})
     return user if user and user.matching_password?(password)
   end
 

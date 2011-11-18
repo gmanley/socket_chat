@@ -23,7 +23,7 @@ module SocketChat
     end
 
     configure(:production) do
-      set :haml, {:ugly => true}
+      set :haml, {ugly: true}
     end
 
     configure(:production, :development) do
@@ -35,10 +35,10 @@ module SocketChat
         config = YAML.load_file('config/config.yml')
       else
         puts 'No file "config/config.yml" found. Assuming we are on heroku!'
-        config = ENV
+        config = ENV # HACK
       end
 
-      set :haml, {:format => :html5}
+      set :haml, {format: :html5}
 
       enable(:sessions)
       set :session_secret, config['session_secret']
