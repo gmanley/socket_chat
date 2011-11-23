@@ -3,7 +3,7 @@ module SocketChat
     def incoming(message, callback)
 
       # Don't mess with meta messages
-      return callback.call(message) if message['channel'].start_with?('/meta/')
+      return callback.call(message) unless message['channel'].start_with?('/chat/')
 
       user = User.find(message['data']['user']['id'])
       room = Room.find(message['data']['room'])

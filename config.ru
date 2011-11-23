@@ -10,7 +10,7 @@ Faye::Logging.log_level = :info
 $server = Faye::RackAdapter.new(SocketChat::App,
   :mount => '/faye',
   :timeout => 30,
-  :extensions => [SocketChat::ChatHistory.new]
+  :extensions => [SocketChat::ChatHistory.new, SocketChat::ActivityNotifier.new]
 )
 
 run $server

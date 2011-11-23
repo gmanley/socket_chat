@@ -16,6 +16,7 @@ module SocketChat
       require 'lib/message'
       require 'lib/room'
       require 'lib/chat_history'
+      require 'lib/activity_notifier'
     end
 
     configure(:development) do
