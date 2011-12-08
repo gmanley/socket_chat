@@ -10,7 +10,7 @@ module SocketChat::ApplicationHelper
   end
 
   def room_url(room)
-    "#{request.scheme}://#{request.host}:#{request.port}/room/#{room}"
+    "#{request.scheme}://#{request.host}:#{request.port}/room/#{room.slug}"
   end
 
   def logged_in?

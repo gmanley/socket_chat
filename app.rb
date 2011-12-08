@@ -57,8 +57,14 @@ module SocketChat
       haml :index
     end
 
+    get '/lobby' do
+      @rooms = Room.accessible_by(current_user)
+      haml :lobby
+    end
+
     get '/room/:room_name' do |room_name|
-      if @room = Room.find_by_slug(room_name)
+      @room = Room.find_by_slug(room_name)
+      if @room && @room.accessible_by?(current_user)
         @messages = @room.messages.limit(20)
         haml :room
       else
@@ -70,7 +76,7 @@ module SocketChat
       if user = User.authenticate(params[:email], params[:password])
         flash[:notice] = "Logged in successfully"
         session[:user_id] = user.id.to_s
-        redirect '/'
+        redirect '/lobby'
       else
         flash[:notice] = "Incorrect credentials"
         redirect '/'

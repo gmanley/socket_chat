@@ -15,6 +15,7 @@ class User
   field :password_salt, type: String
 
   has_many :messages
+  has_and_belongs_to_many :rooms
 
   after_initialize :prepare_password
 
@@ -25,6 +26,10 @@ class User
 
   def short_name
     "#{first_name[0]}.#{last_name}".downcase
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
   end
 
   # Authentication methods
