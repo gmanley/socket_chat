@@ -12,16 +12,11 @@ module SocketChat
           mongoid_config.from_hash(config["database"][settings.environment.to_s])
         end
       end
-      require 'lib/user'
-      require 'lib/message'
-      require 'lib/room'
-      require 'lib/chat_history'
-      require 'lib/activity_notifier'
     end
 
     configure(:development) do |config|
       register Sinatra::Reloader
-      config.also_reload 'lib/*.rb'
+      config.also_reload('lib/*.rb')
     end
 
     configure(:production) do
@@ -33,18 +28,14 @@ module SocketChat
     end
 
     configure do
-      if File.exists?(File.expand_path('config/config.yml', File.dirname(__FILE__)))
-        config = YAML.load_file('config/config.yml')
-      else
-        puts 'No file "config/config.yml" found. Assuming we are on heroku!'
-        config = ENV # HACK
-      end
-
+      config = File.exists?(File.expand_path('../config/config.yml', __FILE__)) ? YAML.load_file('config/config.yml') : ENV
       set :haml, {format: :html5}
 
       enable(:sessions)
       set :session_secret, config['session_secret']
       use Rack::Flash
+
+      Dir['lib/*.rb'].each {|file| require file}
 
       setup_db(config)
     end
