@@ -19,8 +19,9 @@ module SocketChat
       require 'lib/activity_notifier'
     end
 
-    configure(:development) do
+    configure(:development) do |config|
       register Sinatra::Reloader
+      config.also_reload 'lib/*.rb'
     end
 
     configure(:production) do

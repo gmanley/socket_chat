@@ -6,7 +6,7 @@ module SocketChat::ApplicationHelper
   end
 
   def faye_js_path
-    faye_path + ".js"
+    "#{faye_path}.js"
   end
 
   def room_url(room)
