@@ -1,17 +1,15 @@
 require 'spec_helper'
 require 'capybara/rspec'
 
-$server = Faye::RackAdapter.new(SocketChat::App,
-  :mount => '/faye',
-  :timeout => 30,
-  :extensions => [SocketChat::ChatHistory.new]
-)
-
-Capybara.app = $server
-Capybara.current_driver = :selenium
-
 RSpec.configure do |config|
   config.include Capybara::DSL
+end
+
+Capybara.configure do |config|
+  config.save_and_open_page_path = File.join(APP_ROOT, 'tmp/capybara')
+  config.app = Server
+  config.javascript_driver = :webkit
+  config.asset_root = Pathname(File.join(APP_ROOT, 'public'))
 end
 
 def sign_in(email, password)
@@ -19,6 +17,6 @@ def sign_in(email, password)
   within('#login') do
     fill_in('email', :with => email)
     fill_in('password', :with => password)
-    click_button('Sign in')
+    click_on('Sign in')
   end
 end

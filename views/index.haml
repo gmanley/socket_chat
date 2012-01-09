@@ -1,14 +1,6 @@
-= partial(:topbar)
-.container-fluid
-  .page-header
-    %h1
-      Socket Chat
-      %small A Realtime Chat Application
-  - if logged_in?
-    %span#access_notice A lobby will be here!
-  - else
-    %span#access_notice
-      Please sign in or
-      %a{:href => "/user/new"} register!
-  %footer
-    %p © Gray 2011
+- if logged_in?
+  %span#access_notice A lobby will be here!
+- else
+  %span#access_notice
+    Please sign in or
+    %a{:href => "/user/new"} register!

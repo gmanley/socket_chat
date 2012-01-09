@@ -1,26 +1,18 @@
-= partial(:topbar)
-.container-fluid
-  .page-header
-    %h1
-      Socket Chat
-      %small Registration
-  - if @user and !@user.errors.empty?
-    - block_message('Please correct the following issues and then re-submit the form.', @user.errors.full_messages)
-  %form.form-stacked#register{action: '/user/new', method: 'post'}
+- if @user and !@user.errors.empty?
+  - block_message('Please correct the following issues and resubmit the form.', @user.errors.full_messages)
+%form.form-stacked#register{action: '/user/new', method: 'post'}
+  %fieldset
+    %legend Register
     %fieldset
-      %legend Register
-      %fieldset
-        %label{for: 'email'} Email
-        %input.input-large{placeholder: 'Email', type: 'text', name: 'email'}
-        %label{for: 'first_name'} First Name
-        %input.input-large{placeholder: 'First Name', type: 'text', name: 'first_name'}
-        %label{for: 'last_name'} Last Name
-        %input.input-large{placeholder: 'Last Name', type: 'text', name: 'last_name'}
-        %label{for: 'password'} Password
-        %input.input-large{placeholder: 'Password', type: 'password', name: 'password'}
-        %label{for: 'password_confirmation'} Password Confirmation
-        %input.input-large{placeholder: 'Password Confirmation', type: 'password', name: 'password_confirmation'}
-    .actions
-      %button.btn{type: 'submit'} Sign Up
-  %footer
-    %p © Gray 2011
+      %label{for: 'email'} Email
+      %input.input-large{placeholder: 'Email', type: 'text', name: 'email'}
+      %label{for: 'first_name'} First Name
+      %input.input-large{placeholder: 'First Name', type: 'text', name: 'first_name'}
+      %label{for: 'last_name'} Last Name
+      %input.input-large{placeholder: 'Last Name', type: 'text', name: 'last_name'}
+      %label{for: 'password'} Password
+      %input.input-large{placeholder: 'Password', type: 'password', name: 'password'}
+      %label{for: 'password_confirmation'} Password Confirmation
+      %input.input-large{placeholder: 'Password Confirmation', type: 'password', name: 'password_confirmation'}
+  .actions
+    %button.btn{type: 'submit'} Sign Up

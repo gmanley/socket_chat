@@ -1,4 +1,6 @@
-module SocketChat::ApplicationHelper
+# encoding: UTF-8
+
+module ApplicationHelper
   include Haml::Helpers
 
   def faye_path
@@ -10,7 +12,7 @@ module SocketChat::ApplicationHelper
   end
 
   def room_url(room)
-    "#{request.scheme}://#{request.host}:#{request.port}/room/#{room.slug}"
+    "#{request.scheme}://#{request.host}:#{request.port}/rooms/#{room.slug}"
   end
 
   def logged_in?
@@ -48,9 +50,11 @@ module SocketChat::ApplicationHelper
   end
 
   def flash_messages
-    haml_tag 'ul.flash' do
-      [:error, :warning, :notice].each do |f|
-        haml_tag :li, flash[f], class: f if flash.has?(f)
+    # Why the hell is values private for rack-flash
+    flash.send(:values).each do |name, msg|
+      haml_tag :div, class: "alert-message #{name} fade in", data: {alert: 'alert'} do
+        haml_tag 'a.close', '×', href: '#'
+        haml_tag :p, msg
       end
     end
   end

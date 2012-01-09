@@ -1,12 +1,4 @@
-= partial(:topbar)
-.container-fluid
-  .page-header
-    %h1
-      Socket Chat
-      %small A Realtime Chat Application
-  - if logged_in?
-    = partial(:chatbox)
-  - else
-    %span#access_notice Please Sign In
-  %footer
-    %p © Gray 2011
+- if logged_in?
+  = partial(:chatbox)
+- else
+  %span#access_notice Please Sign In

@@ -1,8 +1,8 @@
 require 'acceptance_helper'
 
 feature 'Users must login to see certain pages' do
-  let(:user) { User.make!(:password => 'password') }
-  let(:room) { Room.make! }
+  let(:user) { Fabricate(:user) }
+  let!(:room) { Fabricate(:room) }
 
   background(:each) do
     visit '/user/logout'

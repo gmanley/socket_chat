@@ -1,16 +1,17 @@
 require 'acceptance_helper'
 
-feature 'Chat' do
-  let(:user) { User.make! }
-  let(:room) { Room.make! }
-  let(:message) { Message.make }
+feature 'Chat', :js => true do
+  let!(:user) { Fabricate(:user) }
+  let!(:room) { Fabricate(:room) }
+  let(:message) { Fabricate.build(:message) }
 
   background do
-    sign_in(user.email, 'password')
+    room.users << user
   end
 
   scenario "Posting a message" do
     sign_in(user.email, 'password')
+    save_and_open_page
 
     visit "/room/#{room.slug}"
 

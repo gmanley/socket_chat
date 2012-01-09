@@ -1,13 +1,7 @@
-= partial(:topbar)
-.container-fluid
-  .page-header
-    %h1 Welcome #{current_user.full_name}
-  - if @rooms.empty?
-    %p You are not a part of any rooms!
-  - else
-    %ul
-      - @rooms.each do |room|
-        %li
-          %a{href: room_url(room)}=room.name
-  %footer
-    %p © Gray 2011
+- if @rooms.empty?
+  %p You are not a part of any rooms!
+- else
+  %ul
+    - @rooms.each do |room|
+      %li
+        %a{href: room_url(room)}=room.name

@@ -1,25 +1,13 @@
-require 'yaml'
-
 module SocketChat
   class App < Sinatra::Base
 
-    def self.setup_db(config)
-      Mongoid.configure do |mongoid_config|
-        if mongodb_url = (ENV['MONGOHQ_URL'] || ENV['MONGOLAB_URI']) # For heroku deploys
-          conn = Mongo::Connection.from_uri(mongodb_url)
-          mongoid_config.master = conn.db(URI.parse(mongodb_url).path.gsub(/^\//, ''))
-        else
-          mongoid_config.from_hash(config["database"][settings.environment.to_s])
-        end
-      end
-    end
-
-    configure(:development) do |config|
+    configure(:development) do |c|
       register Sinatra::Reloader
-      config.also_reload('lib/*.rb')
+      c.also_reload('lib/**/*.rb')
     end
 
     configure(:production) do
+      SocketChat.setup_airbrake unless config.airbrake_api_key.nil?
       set :haml, {ugly: true}
     end
 
@@ -28,19 +16,15 @@ module SocketChat
     end
 
     configure do
-      config = File.exists?(File.expand_path('../config/config.yml', __FILE__)) ? YAML.load_file('config/config.yml') : ENV
+      set :root, APP_ROOT
+      set :config, SocketChat.config
       set :haml, {format: :html5}
 
       enable(:sessions)
-      set :session_secret, config['session_secret']
+      set :session_secret, config.session_secret
       use Rack::Flash
-
-      Dir['lib/*.rb'].each {|file| require file}
-
-      setup_db(config)
     end
 
-    require 'lib/application_helper'
     helpers(ApplicationHelper)
 
     get '/' do
@@ -53,11 +37,14 @@ module SocketChat
       haml :lobby
     end
 
-    get '/room/:room_name' do |room_name|
-      @room = Room.find_by_slug(room_name)
-      if @room && @room.accessible_by?(current_user)
-        @messages = @room.messages.limit(20)
-        haml :room
+    get '/rooms/:room_name' do |room_name|
+      if @room = Room.find_by_slug(room_name)
+        if @room.accessible_by?(current_user)
+          @messages = @room.messages.limit(20)
+          haml :room
+        else
+          403
+        end
       else
         404
       end
@@ -65,11 +52,11 @@ module SocketChat
 
     post '/user/login' do
       if user = User.authenticate(params[:email], params[:password])
-        flash[:notice] = "Logged in successfully"
+        flash.now[:notice] = "Logged in successfully"
         session[:user_id] = user.id.to_s
         redirect '/lobby'
       else
-        flash[:notice] = "Incorrect credentials"
+        flash.now[:notice] = "Incorrect credentials"
         redirect '/'
       end
     end
@@ -93,6 +80,10 @@ module SocketChat
       session[:user_id] = nil
       redirect '/'
     end
+
+   error 403 do
+     haml :'403'
+   end
 
     not_found do
       haml :'404'

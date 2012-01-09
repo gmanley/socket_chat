@@ -2,7 +2,7 @@ require 'acceptance_helper'
 
 feature 'Registration' do
 
-  let(:user) { User.make(:password => 'password') }
+  let(:user) { Fabricate(:user, :password => 'password') }
   let(:errors) { find('.alert-message ul') }
 
   scenario "successfully registering a new account with valid data" do

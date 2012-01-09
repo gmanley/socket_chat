@@ -1,18 +1,20 @@
-.topbar
-  .fill
+.navbar.navbar-fixed-top
+  .navbar-inner
     .container
-      %a.brand{:href => "#"} Socket Chat
+      %a.brand{:href => "#"}= SocketChat.config.site_title
       %ul.nav
         %li.active
-          %a{:href => "#"} Home
+          %a{:href => "/"} Home
         %li
           %a{:href => "#about"} About
         %li
           %a{:href => "#contact"} Contact
       - if logged_in?
-        %ul.nav.secondary-nav
-          %li.dropdown#user_dropdown{:data => {:dropdown => 'dropdown'}}
-            %a.dropdown-toggle{:href => "#"}= current_user.email
+        %ul.nav.pull-right
+          %li.dropdown
+            %a.dropdown-toggle{:href => '#', :data => {:toggle => 'dropdown'}}
+              = current_user.email
+              %b.caret
             %ul.dropdown-menu
               %li
                 %a{:href => "#"} My Profile
@@ -20,7 +22,8 @@
               %li
                 %a{:href => "/user/logout"} Logout
       - else
-        %form#login.pull-right{:action => "/user/login", :method => "post"}
+        %form#login.pull-right.navbar-form{:action => "/user/login", :method => "post"}
           %input.input-small{:placeholder => "Email", :type => "text", :name => "email"}
           %input.input-small{:placeholder => "Password", :type => "password", :name => "password"}
-          %button.btn{:type => "submit"} Sign in
+          %button.btn.btn-primary{:type => 'submit'} Sign In
+          %a#register-link.btn{:href => '/user/new'} Sign Up

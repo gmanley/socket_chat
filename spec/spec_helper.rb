@@ -1,17 +1,10 @@
-$:.unshift(File.expand_path('../..', __FILE__))
+APP_ROOT = File.expand_path('../..', __FILE__)
 ENV['RACK_ENV'] = 'test'
 
-require 'bundler/setup'
-Bundler.require(:default, ENV['RACK_ENV'].to_sym)
-
-require 'app'
-
-config = YAML.load_file('config/config.yml')
-SocketChat::App.setup_db(config)
-require 'sham'
-require 'fixtures/blueprints'
+require File.join(APP_ROOT, 'lib/support/boot')
+def app; SocketChat::App end
+SocketChat.setup_database
 
 RSpec.configure do |config|
   config.include Rack::Test::Methods
-  config.before(:each) { Machinist.reset_before_test }
 end

@@ -22,11 +22,11 @@ var chatInit = function () {
 
   client.addExtension(chatInfo);
 
-  var chat_subscription = client.subscribe('/chat/' + room, function (message) {
+  client.subscribe('/chat/' + room, function (message) {
     addChatMessage(message);
   });
 
-  var activity_subscription = client.subscribe('/activity/' + room, function (activity) {
+  client.subscribe('/activity/' + room, function (activity) {
     addActivityMessage(activity);
   });
 
