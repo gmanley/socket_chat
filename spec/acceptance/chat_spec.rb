@@ -13,7 +13,7 @@ feature 'Chat', :js => true do
     sign_in(user.email, 'password')
     save_and_open_page
 
-    visit "/room/#{room.slug}"
+    visit "/rooms/#{room.slug}"
 
     within("#sendMessage") do
       fill_in('message', :with => message.text)

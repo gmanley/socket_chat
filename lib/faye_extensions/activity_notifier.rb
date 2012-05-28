@@ -12,8 +12,8 @@ class ActivityNotifier
     room = Room.find(message['room'])
 
     Server.get_client.publish("/activity/#{room.id}", {
-      'id' => user.id.to_s,
-      'short_name' => user.short_name
+      id: user.id.to_s,
+      short_name: user.short_name
     })
 
     # Call the server back now we're done

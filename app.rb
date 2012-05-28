@@ -52,11 +52,11 @@ module SocketChat
 
     post '/user/login' do
       if user = User.authenticate(params[:email], params[:password])
-        flash.now[:notice] = "Logged in successfully"
+        flash[:notice] = "Logged in successfully"
         session[:user_id] = user.id.to_s
         redirect '/lobby'
       else
-        flash.now[:notice] = "Incorrect credentials"
+        flash[:notice] = "Incorrect credentials"
         redirect '/'
       end
     end

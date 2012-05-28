@@ -13,4 +13,5 @@ Fabricator(:user) do
   email { |user| Faker::Internet.free_email("#{user.first_name} #{user.last_name}") }
   password "password"
   password_confirmation { |user| user.password }
+  after_build {|user| user.send(:prepare_password) }
 end

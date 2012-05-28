@@ -17,6 +17,6 @@ def sign_in(email, password)
   within('#login') do
     fill_in('email', :with => email)
     fill_in('password', :with => password)
-    click_on('Sign in')
+    click_on('Sign In')
   end
 end
