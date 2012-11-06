@@ -1,5 +1,3 @@
-require 'digest/sha1'
-
 class Message
   include Mongoid::Document
   include Mongoid::Timestamps

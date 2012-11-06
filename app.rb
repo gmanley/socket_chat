@@ -1,5 +1,6 @@
 module SocketChat
   class App < Sinatra::Base
+    extend Settings
 
     configure(:development) do |c|
       register Sinatra::Reloader

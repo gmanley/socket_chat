@@ -37,24 +37,36 @@ module ApplicationHelper
     haml(template.to_sym, options)
   end
 
-  def block_message(main_message, messages = [])
-    haml_tag :div, class: "alert-message block-message error", data: {alert: 'alert'} do
-      haml_tag 'a.close', href: '#'
-      haml_tag :p, main_message
-      haml_tag :ul do
-        messages.each do |msg|
-          haml_tag :li, msg
-        end
-      end
-    end
+  BOOTSTRAP_FLASH_CLASS = {
+    alert:   'warning',
+    notice:  'info',
+  }
+
+  def bootstrap_flash_class(type)
+    BOOTSTRAP_FLASH_CLASS[type] || type.to_s
   end
 
   def flash_messages
-    # Why the hell is values private for rack-flash
-    flash.send(:values).each do |name, msg|
-      haml_tag :div, class: "alert-message #{name} fade in", data: {alert: 'alert'} do
-        haml_tag 'a.close', '×', href: '#'
-        haml_tag :p, msg
+    flash.send(:values).each do |type, message|
+      flash_message(type, message) if message.is_a?(String)
+    end
+  end
+
+  def flash_message(type, message)
+    haml_tag :div, class: "alert alert-#{bootstrap_flash_class(type)} fade in" do
+      haml_tag 'a.close', '×', data: {dismiss: 'alert'}
+      haml_concat(message)
+    end
+  end
+
+  def block_message(type, main_message, messages = [])
+    haml_tag :div, class: "alert alert-block alert-#{bootstrap_flash_class(type)} fade in" do
+      haml_tag 'a.close', '×', data: {dismiss: 'alert'}
+      haml_tag :h4,  main_message, class: 'alert-heading'
+      haml_tag :ul do
+        messages.each do |message|
+          haml_tag :li, message
+        end
       end
     end
   end
